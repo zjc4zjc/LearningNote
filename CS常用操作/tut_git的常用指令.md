@@ -35,6 +35,8 @@ git log
 git diff
 git rm -r --cached 文件夹名
 git reset --hard 2b1d6bc40200862955c45a77b474d05e4d501f95
+(windows终端里)rmdir /s /q .git
+(linux终端里)rm -rf .git
 ```
 
 它们分别是：
@@ -49,83 +51,76 @@ git reset --hard 2b1d6bc40200862955c45a77b474d05e4d501f95
 - `git diff`：看还没提交的改动
 - `git rm -r --cached 文件夹名`：取消跟踪一个已提交过的文件夹，但保留本地文件
 - `git reset --hard 2b1d6bc40200862955c45a77b474d05e4d501f95`：回到之前的一次提交
+- `rmdir /s /q .git`：该操作会直接让整个仓库变成普通文件夹，不再参与git版本控制
 
 ---
 ## 日常最常用工作流
 
 ### 1.在github上新建了远程仓库
 
-如果你新建了一个代码目录，例如：
+如果你新建了一个远程repo，例如：
 
 ```text
-[D:\Onedrive\Github\PreferenceArbiter](https://github.com/zjc4zjc/PreferenceArbiter.git)
+https://github.com/zjc4zjc/PreferenceArbiter.git
 ```
 
-进入目录后执行：
+对应着你本地的文件夹：
+
+```
+D:\Onedrive\Github\PreferenceArbiter
+```
+
+你可以在本地文件夹路径的终端里，按照github的指引依次输入：
 
 ```bash
+#将"# PreferenceArbiter"这段文字输入进README.md
+echo "# PreferenceArbiter" >> README.md
+#git初始化
 git init
+#新建一个带有上述输入的README.md
+git add README.md
+#提交这次的改动，注意只是提交不是推送
+git commit -m "first commit"
+#把当前分支强制重命名为 `main`
+git branch -M main
+#与远程仓库相连接
+git remote add origin https://github.com/zjc4zjc/PreferenceArbiter.git
+#如果git remote -v输出了origin的fetch和push地址，就说明连接成功。
+git remote -v
+#将本地的文件推送至main分支，首次完成后续仅输入git push就可以了
+git push -u origin main
 ```
 
-这会在当前目录创建 `.git`，表示这里开始成为一个 Git 仓库。
+### 2.已经完成过本地-远程的连接，初次推送后后续快速迭代
 
-检查是否成功：
+本地文件夹路径的终端里执行：
 
-```bash
+```shell
 git status
+git diff   #可以不执行
 ```
 
 如果看到类似：
 
-```text
-On branch master
 ```
-
-或：
-
-```text
 On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
 ```
 
-就说明初始化成功。
-
-### 2. 连接远程 GitHub 仓库
-
-假设你已经在 GitHub 上新建了一个空仓库，想要与本地的项目连通：
-
-```text
-https://github.com/你的用户名/Preference_Arbiter.git
-```
-
-在本地仓库目录里执行，可以直接从github上复制这个连接代码：
+说明没有改动的地方。反之则需要将改动加入到git的追踪/承认/推送，依次输入：
 
 ```bash
-git remote add origin https://github.com/你的用户名/Preference_Arbiter.git
-git remote -v
-```
-
-如果 `git remote -v` 输出了 `origin` 的 fetch 和 push 地址，就说明连接成功。
-
-### 3. 修改后提交与推送
-
-假设改了几个文档或代码文件，标准流程是：
-
-#### 3.1 先看改了什么
-
-```bash
-git status
-git diff
-```
-可以看出增删查改的情况
-#### 3.2 提交修改
-
-```bash
+#这次改动加入暂存区
 git add .
-git commit -m "docs: update weekly record"
+#提交这次改动
+git commit -m"<对于这次改动的描述>"
+#推送这次改动到远程repo
 git push
 ```
-add将当前修改加入暂存区，commit提交这次修改，push推送到远程github仓库
-#### 3.3 查看最近提交信息
+
+### 3 查看最近提交信息
 
 ```bash
 git log
@@ -149,10 +144,10 @@ outputs/
 checkpoints/
 ```
 
-例如文档仓库里，如果不想把 `常用资料` 这个文件夹及其内容上传到 GitHub：
+例如文档仓库里，如果不想把 `常用资料` 这个文件夹及其里面的内容上传到 GitHub：
 
 ```gitignore
-/常用资料/
+常用资料/
 ```
 
 ### 5. 取消仓库中某文件或文件夹的git追踪
@@ -165,11 +160,3 @@ git push
 
 之后最好在.gitignore里加入这个文件或文件夹，防止在`git add .`里又参与追踪
 
-### 6. 取消整个仓库的git
-
-```bash
-(windows终端里)rmdir /s /q .git
-(linux终端里)rm -rf .git
-```
-
-该操作会直接让整个仓库变成普通文件夹，不再参与git版本控制
