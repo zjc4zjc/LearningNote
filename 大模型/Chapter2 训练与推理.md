@@ -71,11 +71,14 @@ PPO 论文：https://arxiv.org/pdf/1707.06347
 
 Actor与Reference的初始化模型就是SFT模型，Reward与Critic的初始化模型就是Reward模型，其中Actor与Critic在后续需要训练，而Reward与Reference是参数冻结的。
 
-1. 给Actor模型输入问题Prompt，Actor模型会有两个输出：
-	- 生成的回答response
-	- 还有给出上一部分的文字，每生成下一个字的概率`p(token|context)`，记为`old_log_prob`，是一个张量，长度就是response的长度
-2. 将问题与生成的回答作为输入：
-	- 输入给Ref模型，会得出在原先模型下输出该句话的张量分布`p(token|context)`，记为`ref_log_prob`，是一个张量，长度就是response的长度
-	- 输入给Reward模型，会得出模型的实际收益，是一个分数
-	- 输入给Critic模型，评论家会为 response 中的每个 token 计算一个预期收益，第i个预期收益记为 `values[i]`
-3. 
+在训练时会根据Actor和Critic的loss来更新权重：
+$$Loss=actor\_loss+0.1\times critic\_los$$
+
+# 7. 大模型推理策略
+
+## 7.1 贪心策略
+
+直接选择概率最高的词语，这种方法简单高效，但是可能会导致生成的文本过于单调和重复。
+
+## 7.2 Beam Search 集束搜索策略
+
