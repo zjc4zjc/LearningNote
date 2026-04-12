@@ -3,13 +3,13 @@
 本文记录 `cmd` 的常用指令。
 ## windows终端的常用指令教程
 
-| 指令                                                            | 目的                                                                                                                         |
-| ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| nvidia-smi                                                    | 查看支持的CUDA最高版本                                                                                                              |
-| nvidia-smi --query-gpu=name,compute_cap --format=csv,noheader | 查看显卡与支持的sm版本                                                                                                               |
-| nvcc --version                                                | 查看cuda版本（电脑的cuda版本，非conda的）如果显示'nvcc' 不是内部或外部命令，也不是可运行的程序或批处理文件，需要先去官网下载：https://developer.nvidia.com/cuda-toolkit-archive |
-| ipconfig/all                                                  | 查看ip                                                                                                                       |
-|                                                               |                                                                                                                            |
+| 指令                                                                                                                                                                                                               | 目的                                                                                                                         |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| nvidia-smi                                                                                                                                                                                                       | 查看支持的CUDA最高版本                                                                                                              |
+| nvidia-smi --query-gpu=name,compute_cap --format=csv,noheader                                                                                                                                                    | 查看显卡与支持的sm版本                                                                                                               |
+| nvcc --version                                                                                                                                                                                                   | 查看cuda版本（电脑的cuda版本，非conda的）如果显示'nvcc' 不是内部或外部命令，也不是可运行的程序或批处理文件，需要先去官网下载：https://developer.nvidia.com/cuda-toolkit-archive |
+| ipconfig/all                                                                                                                                                                                                     | 查看ip                                                                                                                       |
+| python -c "import torch; print('torch:', torch.__version__); print('cuda available:', torch.cuda.is_available()); print('cuda version:', torch.version.cuda); print('device count:', torch.cuda.device_count())" | 看torch支不支持gpu                                                                                                              |
 
 ---
 
@@ -21,7 +21,9 @@
 | lscpu                    | 查看cpu信息                  |
 | nvidia-smi -L            | 看显卡型号                    |
 | watch -n 1 nvidia-smi    | 动态看显卡                    |
-| df -h                    | 看硬盘                      |
+| df -h                    | 看硬盘已挂载可用空间               |
+| df -h /home/zjc          | 看自家的空间                   |
+| du -sh /home/zjc         | 看自己用了多少空间                |
 | cd                       | 回到home文件夹                |
 | cd ..                    | 回到上一级文件夹                 |
 | cd ~/software            | 进入特定路径                   |
