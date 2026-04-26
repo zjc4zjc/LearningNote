@@ -163,3 +163,58 @@ curl -v https://chatgpt.com
 ```
 
 说明服务器 → 本地代理 → 外网链路正常。后续若有长串信息不用管，大概率是Cloudflare 的防机器人验证给拦截了，问题不大不影响codex使用。
+
+### 4.7 如果服务器终端里能唤起codex正常使用，extension里不行
+
+大概率是服务器上的 VS Code Server / extension host 没有稳定继承代理变量，导致 Codex extension 请求 chatgpt.com、ab.chatgpt.com、/wham/accounts/check 等接口失败，于是一直加载。
+
+解决方法：把代理写进 `~/.vscode-server/server-env-setup`
+
+1. 先在终端里创建`.vscode-server`
+
+在文件里写入这些内容。请务必留意**一行一行**复制输入，不要整体输入也不要留空或者换行符。
+
+```bash
+#创建 VS Code Server 环境文件
+mkdir -p ~/.vscode-server
+
+#直到遇到单独一行 EOF 为止，中间所有内容都作为输入写进文件
+cat > ~/.vscode-server/server-env-setup <<'EOF'
+export ALL_PROXY=socks5h://127.0.0.1:7890
+export all_proxy=socks5h://127.0.0.1:7890
+export HTTPS_PROXY=socks5h://127.0.0.1:7890
+export https_proxy=socks5h://127.0.0.1:7890
+export HTTP_PROXY=socks5h://127.0.0.1:7890
+export http_proxy=socks5h://127.0.0.1:7890
+export NO_PROXY=localhost,127.0.0.1,::1
+export no_proxy=localhost,127.0.0.1,::1
+EOF
+
+#写完后检查
+cat ~/.vscode-server/server-env-setup
+```
+ 
+ 里面写了三类东西：
+- ALL_PROXY/all_proxy：通用代理
+- HTTP_PROXY/HTTPS_PROXY 及小写版本：HTTP/HTTPS 代理
+- NO_PROXY/no_proxy：本机地址不要走代理
+ 
+ VS Code Remote-SSH 会在启动远端 server 时读取这个文件，用里面的环境变量启动远端服务。Codex extension 也会继承这些变量。
+
+2. 修改Remote Settings JSON
+
+按`Ctrl+Shift+P`，输入并打开`Preferences: Open Remote Settings (JSON)`，把括号内新增两行：
+
+```bash
+{
+  #原有的内容保持不变，新增如下两行
+  "http.proxy": "socks5://127.0.0.1:7890",
+  "http.proxySupport": "override"
+}
+```
+
+3. 重启 Remote-SSH 的服务器端
+
+按`Ctrl+Shift+P`，输入并打开`Remote-SSH: Kill VS Code Server on Host`，再重新连接服务器`Remote-SSH: Connect to Host...`
+
+基本就能解决问题。
