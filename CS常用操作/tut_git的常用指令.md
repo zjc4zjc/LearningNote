@@ -160,3 +160,40 @@ git push
 
 之后最好在.gitignore里加入这个文件或文件夹，防止在`git add .`里又参与追踪
 
+### 6. 远程服务器连接github账号
+
+先在服务器终端输入
+
+```bash
+ssh-keygen -t ed25519 -C "你的邮箱@example.com"
+```
+
+执行后：
+- 提示 `Enter file in which to save the key` → 直接按 **回车**（用默认路径）
+- 提示 `Enter passphrase` → 直接按 **回车**（建议直接**回车**，空密码，不然每次git都要管你要密码）
+- 再次确认 passphrase → 直接按 **回车**
+
+完成后会生成两个文件：
+- `~/.ssh/id_ed25519` （私钥，不要给别人）
+- `~/.ssh/id_ed25519.pub` （公钥，需要添加到 GitHub）
+
+再在服务器终端输入
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+
+#这一步会打印出类似于下方的文字，请复制
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI... 你的邮箱@example.com
+```
+
+登录github，访问 [https://github.com/settings/keys](https://github.com/settings/keys)  点击绿色的 **New SSH Key** 按钮，**Title** 填任意能帮你识别这台服务器的名字， **Key** 粘贴刚才复制的内容，点击 **Add SSH Key**
+
+再在服务器终端输入
+```bash
+ssh -T git@github.com
+
+#这时应该会返回
+Hi <你的名字>! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+就可以顺利git clone/add/commit/push了
