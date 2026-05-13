@@ -205,3 +205,19 @@ git clone https://github.com/<用户名>/<repo名>.git
 ```
 
 其他的 git add/commit/push都照常
+
+如果你在git commit时遇到:
+
+```bash
+Author identity unknown 
+*** Please tell me who you are. 
+Run 
+
+git config --global user.email "you@example.com" 
+git config --global user.name "Your Name" 
+
+to set your account's default identity. 
+Omit --global to set the identity only in this repository.
+```
+
+你需要先按照提示运行这两行代码，分别用你注册github时的邮箱，和你github的名字来替换运行。
