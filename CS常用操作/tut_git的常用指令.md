@@ -196,4 +196,12 @@ ssh -T git@github.com
 Hi <你的名字>! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
-就可以顺利git clone/add/commit/push了
+git clone需要注意，走绿色**Code**按钮的SSH而非HTTPS
+```bash
+#SSH
+git clone git@github.com:<用户名>/<repo名>.git
+#HTTPS
+git clone https://github.com/<用户名>/<repo名>.git 
+```
+
+其他的 git add/commit/push都照常
