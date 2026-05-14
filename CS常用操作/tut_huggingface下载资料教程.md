@@ -52,6 +52,7 @@ hf download bowen-upenn/PersonaMem-v2 --repo-type dataset --local-dir "D:\Onedri
 #省略--repo-type的话默认指模型
 #--local-dir .默认指下载到当前文件夹里
 hf download zstanjj/MemSifter-4B-Thinking --local-dir .
+hf download Qwen/Qwen3-4B-Instruct-2507 --local-dir .
 ```
 
 
