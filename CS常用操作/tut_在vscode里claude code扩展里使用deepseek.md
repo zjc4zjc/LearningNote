@@ -22,7 +22,7 @@
 
 在vscode的左下角，有一个齿轮。点击齿轮(或者直接 `ctrl + ,` )，点击settings-Extensions-Claude Code-Edit in settings.json，在弹出来的 `claudeCode.environmentVariables`里新增两行代码：
 
-```
+```bash
 	"claudeCode.environmentVariables": [
 	{ "name": "ANTHROPIC_BASE_URL", "value": "https://xxxx" },
     { "name": "ANTHROPIC_AUTH_TOKEN", "value": "xxxx" }
@@ -40,15 +40,17 @@
 ```bash
 {
   #原有的内容保持不变，新增如下行
-	"ANTHROPIC_AUTH_TOKEN": "sk-xxxxx",
-	"ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
-	"ANTHROPIC_MODEL": "deepseek-v4-pro[1m]",
-	"ANTHROPIC_DEFAULT_OPUS_MODEL": "deepseek-v4-pro[1m]",
-	"ANTHROPIC_DEFAULT_SONNET_MODEL": "deepseek-v4-pro[1m]",
-	"ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-pro[1m]",
-	"CLAUDE_CODE_SUBAGENT_MODEL": "deepseek-v4-pro[1m]",
-	"CLAUDE_CODE_EFFORT_LEVEL": "max",
-	"CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+  "claudeCode.environmentVariables": [
+    {"name": "ANTHROPIC_AUTH_TOKEN","value": "sk-xxx"},
+    {"name": "ANTHROPIC_BASE_URL","value": "https://api.deepseek.com/anthropic" },
+    {"name": "ANTHROPIC_MODEL","value": "deepseek-v4-pro[1m]"},
+    {"name": "ANTHROPIC_DEFAULT_OPUS_MODEL","value": "deepseek-v4-pro[1m]"},
+    {"name": "ANTHROPIC_DEFAULT_SONNET_MODEL","value": "deepseek-v4-pro[1m]"},
+    {"name": "ANTHROPIC_DEFAULT_HAIKU_MODEL","value": "deepseek-v4-flash"},
+    {"name": "CLAUDE_CODE_SUBAGENT_MODEL","value": "deepseek-v4-flash"},
+    {"name": "CLAUDE_CODE_EFFORT_LEVEL","value": "max"},
+    {"name": "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC","value": "1"}
+  ]
 }
 ```
 
