@@ -10,18 +10,26 @@
 如果还没有安装 `node` 和 `npm`，请查看教程[tut_node_npm下载安装](tut_node_npm下载安装)
 
 
-## 1. 在VSCode中下载插件Claude Code for VS Code
+## 1. 下载claude code
+
+终端里执行`npm install -g @anthropic-ai/claude-code`
+
+在VSCode中下载插件Claude Code for VS Code
 
 在插件页面直接搜索Claude Code for VS Code，下载启用即可
 
 ## 2. 修改Claude Code的配置
 
 在vscode的左下角，有一个齿轮。点击齿轮(或者直接 `ctrl + ,` )，点击settings-Extensions-Claude Code-Edit in settings.json，在弹出来的 `claudeCode.environmentVariables`里新增两行代码：
+
 ```
 	"claudeCode.environmentVariables": [
-
+	{ "name": "ANTHROPIC_BASE_URL", "value": "https://xxxx" },
+    { "name": "ANTHROPIC_AUTH_TOKEN", "value": "xxxx" }
     ]
 ```
+
+这里的URL和TOKEN就按照上面的xxx格式就行了，不用修改，复制了直接保存并退出。
 
 ## 3. 修改Settings JSON
 
@@ -44,8 +52,4 @@
 }
 ```
 
-3. 重启 Remote-SSH 的服务器端
-
-按`Ctrl+Shift+P`，输入并打开`Remote-SSH: Kill VS Code Server on Host`，再重新连接服务器`Remote-SSH: Connect to Host...`
-
-基本就能解决问题。
+留意把 `ANTHROPIC_AUTH_TOKEN` 换成自己的token密钥。
