@@ -47,7 +47,7 @@ codex-cli 0.114.0
 
 ## 3. 在有梯子的个人电脑的vscode里使用
 
-先在Extensions里搜索codex扩展，点击安装，在右侧选择sign in。请留意梯子不能选择香港，尽量选择美国日本新加坡等地区避开open ai的区域限制。
+先在Extensions里搜索codex扩展，点击安装，在右侧选择sign in。请留 意梯子不能选择香港，尽量选择美国日本新加坡等地区避开open ai的区域限制。
 
 ## 4. 在无梯子的服务器的vscode里使用
 
