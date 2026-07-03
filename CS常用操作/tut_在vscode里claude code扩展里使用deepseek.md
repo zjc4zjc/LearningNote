@@ -20,7 +20,7 @@
 
 ## 2. 修改Claude Code的配置
 
-在vscode的左下角，有一个齿轮。点击齿轮(或者直接 `ctrl + ,` )，点击settings-Extensions-Claude Code-Edit in settings.json，在弹出来的 `claudeCode.environmentVariables`里新增两行代码：
+在vscode的左下角，有一个齿轮。点击齿轮(或者直接 `ctrl + ,` )，点击settings，在弹出来的窗口选中**USER**，点击Extensions-Claude Code-Edit in settings.json，在弹出来的 `claudeCode.environmentVariables`里新增两行代码：
 
 ```bash
 	"claudeCode.environmentVariables": [
@@ -35,7 +35,9 @@
 
 如果是本机用，则修改本机的settings.json；如果是连了linux服务器，则修改服务器上的settings.json。
 
-以远程ssh服务器为例，按`Ctrl+Shift+P`，输入并打开`Preferences: Open Remote Settings (JSON)`，把括号内新增：
+以远程ssh服务器为例，按`Ctrl+Shift+P`，输入并打开`Preferences: Open Remote Settings (JSON)`，在括号内新增代码：
+
+或者其实也可以用和第二步一样的方法：在vscode的左下角，有一个齿轮。点击齿轮(或者直接 `ctrl + ,` )，点击settings，在弹出来的窗口选中**REMOTE**，点击Extensions-Claude Code-Edit in settings.json，在弹出来的 `claudeCode.environmentVariables`里新增代码：
 
 ```bash
 {

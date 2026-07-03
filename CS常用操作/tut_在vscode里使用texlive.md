@@ -68,3 +68,56 @@ xelatex --version
 latexmk --version
 ```
 
+## 5. 修改Settings JSON
+
+以远程ssh服务器为例，按`Ctrl+Shift+P`，输入并打开`Preferences: Open Remote Settings (JSON)`，在括号内新增代码：
+
+或者在vscode的左下角，有一个齿轮。点击齿轮(或者直接 `ctrl + ,` )，点击settings，在弹出来的窗口选中**REMOTE**，点击Extensions-Latex-随便找一个Edit in settings.json，在弹出来的 settings.json里把latex-workshop的部分全部换成以下代码：
+
+```bash
+{
+	#原有的内容保持不变，把latex-workshop相关行替换为
+	"latex-workshop.latex.tools": [  
+	{  
+	"name": "latexmk-xelatex",  
+	"command": "/home/zjc/software/texlive/2026/bin/x86_64-linux/latexmk",  
+	"args": [  
+	"-xelatex",  
+	"-synctex=1",  
+	"-interaction=nonstopmode",  
+	"-file-line-error",  
+	"%DOC%"  
+	]  
+	},  
+	{  
+	"name": "xelatex",  
+	"command": "/home/zjc/software/texlive/2026/bin/x86_64-linux/xelatex",  
+	"args": [  
+	"-synctex=1",  
+	"-interaction=nonstopmode",  
+	"-file-line-error",  
+	"%DOC%"  
+	]  
+	}  
+	],  
+	"latex-workshop.latex.recipes": [  
+	{  
+	"name": "latexmk-xelatex",  
+	"tools": [  
+	"latexmk-xelatex"  
+	]  
+	},  
+	{  
+	"name": "xelatex",  
+	"tools": [  
+	"xelatex"  
+	]  
+	}  
+	],  
+	"latex-workshop.latex.recipe.default": "latexmk-xelatex",  
+	"latex-workshop.view.pdf.viewer": "tab",  
+	"latex-workshop.latex.autoBuild.run": "onSave"
+}
+```
+
+之后，打开tex文件，右上方有个绿色播放键，点击即可build latex project。
