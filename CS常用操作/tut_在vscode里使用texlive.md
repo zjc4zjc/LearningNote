@@ -22,31 +22,49 @@ mkdir -p /home/zjc/software/texlive/texlive2026-unpacked
 7z x /home/zjc/software/texlive/texlive2026-20260301.iso \  
 -o/home/zjc/software/texlive/texlive2026-unpacked
 #检查解压结果
+cd /home/zjc/software/texlive/texlive2026-unpacked
+ls
 ```
 
-这里的URL和TOKEN就按照上面的xxx格式就行了，不用修改，复制了直接保存并退出。
+ls后应该能看到install-tl文件，说明对了
 
-## 3. 修改Settings JSON
+## 3. 安装texlive
 
-如果是本机用，则修改本机的settings.json；如果是连了linux服务器，则修改服务器上的settings.json。
+比如我想安装到 `/home/zjc/software/texlive/2026`
 
-以远程ssh服务器为例，按`Ctrl+Shift+P`，输入并打开`Preferences: Open Remote Settings (JSON)`，把括号内新增：
+在vscode终端里执行：
+```bash
+#先进入目标路径
+cd /home/zjc/software/texlive/texlive2026-unpacked
+#安装至指定路径
+perl install-tl --texdir=/home/zjc/software/texlive/2026
+```
+
+在弹出来的界面里确认安装位置是TEXDIR: /home/zjc/software/texlive/2026，然后输入`I`再回车，这里需要等待安装，一般15分钟左右。
+
+安装完成后在终端输入
 
 ```bash
-{
-  #原有的内容保持不变，新增如下行
-  "claudeCode.environmentVariables": [
-    {"name": "ANTHROPIC_AUTH_TOKEN","value": "sk-xxx"},
-    {"name": "ANTHROPIC_BASE_URL","value": "https://api.deepseek.com/anthropic" },
-    {"name": "ANTHROPIC_MODEL","value": "deepseek-v4-pro[1m]"},
-    {"name": "ANTHROPIC_DEFAULT_OPUS_MODEL","value": "deepseek-v4-pro[1m]"},
-    {"name": "ANTHROPIC_DEFAULT_SONNET_MODEL","value": "deepseek-v4-pro[1m]"},
-    {"name": "ANTHROPIC_DEFAULT_HAIKU_MODEL","value": "deepseek-v4-flash"},
-    {"name": "CLAUDE_CODE_SUBAGENT_MODEL","value": "deepseek-v4-flash"},
-    {"name": "CLAUDE_CODE_EFFORT_LEVEL","value": "max"},
-    {"name": "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC","value": "1"}
-  ]
-}
+find /home/zjc/software/texlive/2026/bin -name xelatex
 ```
 
-留意把 `ANTHROPIC_AUTH_TOKEN` 换成自己的token密钥。
+大概率会得到`/home/zjc/software/texlive/2026/bin/x86_64-linux/xelatex`，说明对了
+
+## 4. 编辑环境变量
+
+```bash
+#不用打开bashrc再添加，直接一行行输入就行
+#请根据自己的情况修改你的真实路径
+echo 'export PATH=/home/zjc/software/texlive/2026/bin/x86_64-linux:$PATH' >> ~/.bashrc  
+echo 'export MANPATH=/home/zjc/software/texlive/2026/texmf-dist/doc/man:$MANPATH' >> ~/.bashrc  
+echo 'export INFOPATH=/home/zjc/software/texlive/2026/texmf-dist/doc/info:$INFOPATH' >> ~/.bashrc  
+source ~/.bashrc
+
+#然后测试，有合法输出说明成功了
+which xelatex  
+which pdflatex  
+which latexmk  
+xelatex --version  
+latexmk --version
+```
+
