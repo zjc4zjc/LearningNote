@@ -218,3 +218,33 @@ cat ~/.vscode-server/server-env-setup
 按`Ctrl+Shift+P`，输入并打开`Remote-SSH: Kill VS Code Server on Host`，再重新连接服务器`Remote-SSH: Connect to Host...`
 
 基本就能解决问题。
+
+## 5. 如果想更换为第三方api使用codex
+
+需要更新 `config.toml` 以及 `auth.json` 这两个文件，按照第三方的教程来。
+比如`config.toml` 的最上方需要输入类似为：
+
+```bash
+model_provider = "xxx(第三方提供商)"
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+plan_mode_reasoning_effort = "xhigh"
+personality = "pragmatic"
+service_tier = "fast"
+
+[model_providers.vexon]
+name = "xxx(第三方提供商)"
+base_url = "xxx(第三方提供商网址)"
+experimental_bearer_token = "你的apikey，类似于sk-xx"
+wire_api = "responses"
+requires_openai_auth = true
+```
+
+再比如 `auth.json` 需要输入类似为：
+
+```bash
+{
+  "auth_mode": "apikey",
+  "OPENAI_API_KEY": "你的apikey，类似于sk-xx"
+}
+```
