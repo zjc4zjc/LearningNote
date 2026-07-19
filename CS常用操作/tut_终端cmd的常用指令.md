@@ -14,24 +14,24 @@
 
 ## Linux终端的常用指令教程
 
-| 指令                       | 目的                         |
-| ------------------------ | -------------------------- |
-| lsb_release -a           | 查看linux的操作系统               |
-| lscpu                    | 查看cpu信息                    |
-| nvidia-smi -L            | 看显卡型号                      |
-| watch -n 1 nvidia-smi    | 动态看显卡                      |
-| df -h                    | 看硬盘已挂载可用空间                 |
-| df -h /home/zjc          | 看自家的空间                     |
-| du -sh /home/zjc         | 看自己用了多少空间                  |
-| cd                       | 回到home文件夹                  |
-| cd ..                    | 回到上一级文件夹                   |
-| cd ~/software            | 进入特定路径                     |
-| ls                       | 列出当前文件夹里所有文件               |
-| mkdir -p ~/software/node | 在特定路径创建特定文件夹，如果已经有了则pass   |
-| pwd                      | 打印当前完整路径                   |
-| nano ~/.bashrc           | 进入shell配置文件，配置环境变量         |
-| source ~/.bashrc         | 重启shell配置文件                |
-| which git/nvcc           | 查看某依赖的位置，查不到要么没下载要么没配置环境变量 |
+| 指令                              | 目的                         |
+| ------------------------------- | -------------------------- |
+| lsb_release -a                  | 查看linux的操作系统               |
+| lscpu                           | 查看cpu信息                    |
+| nvidia-smi -L                   | 看显卡型号                      |
+| watch -n 1 nvidia-smi           | 动态看显卡                      |
+| df -h                           | 看硬盘已挂载可用空间                 |
+| du -sh /gemini/code/UESTCRecord | 看特定文件夹大小                   |
+| du -sh /home/zjc                | 看自己用了多少空间                  |
+| cd                              | 回到home文件夹                  |
+| cd ..                           | 回到上一级文件夹                   |
+| cd ~/software                   | 进入特定路径                     |
+| ls                              | 列出当前文件夹里所有文件               |
+| mkdir -p ~/software/node        | 在特定路径创建特定文件夹，如果已经有了则pass   |
+| pwd                             | 打印当前完整路径                   |
+| nano ~/.bashrc                  | 进入shell配置文件，配置环境变量         |
+| source ~/.bashrc                | 重启shell配置文件                |
+| which git/nvcc                  | 查看某依赖的位置，查不到要么没下载要么没配置环境变量 |
 
 ---
 
