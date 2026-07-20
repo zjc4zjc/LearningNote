@@ -139,6 +139,9 @@ Note：我自己的电脑上：
 $HOME/software/node/node-v22/bin
 ~/software/node/node-v22/bin
 /home/zjc/software/node/node-v22/bin
+
+#服务器上
+/gemini/code/software/node/node-v22/bin
 ```
 这三者等价，但建议使用 `$HOME` ，会更规范
 
@@ -160,7 +163,7 @@ npm -v
 上一步的**临时环境变量**将随着当前终端关闭而消失，导致新打开的终端无法调用 `node` 和 `npm` 。为了让临时环境变量升级为**永久环境变量**，一行行执行：
 
 ```bash
-echo 'export PATH="$HOME/software/node/node-v22/bin:$PATH"' >> ~/.bashrc
+echo 'export PATH=/gemini/code/software/node/node-v22/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
 ```
 这里的：
@@ -172,8 +175,8 @@ source ~/.bashrc
 关闭终端，打开新终端验证：
 
 ```bash
-which node
-which npm
+command -v node
+command -v npm
 node -v
 npm -v
 ```
