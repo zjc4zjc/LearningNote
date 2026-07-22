@@ -20,6 +20,8 @@
 
 ## 2. 修改Claude Code的配置
 
+假设主要是在远端服务器用，不是在本机用。
+
 在vscode的左下角，有一个齿轮。点击齿轮(或者直接 `ctrl + ,` )，点击settings，在弹出来的窗口选中**USER**，点击Extensions-Claude Code-Edit in settings.json，在弹出来的 `claudeCode.environmentVariables`里新增两行代码：
 
 ```bash
