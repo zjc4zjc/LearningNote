@@ -124,3 +124,5 @@ latexmk --version
 ```
 
 之后，打开tex文件，右上方有个绿色播放键，点击即可build latex project。
+
+## 6. 记得安装latex workshop扩展
