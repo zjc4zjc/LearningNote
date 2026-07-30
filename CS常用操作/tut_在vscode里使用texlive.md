@@ -12,21 +12,21 @@
 
 比如我下载的文件放置在`/home/zjc/software/texlive/texlive2026-20260301.iso`
 
-在vscode的终端里执行：
+在vscode的终端里执行(此处默认linux系统)：
 ```bash
 #先进入目标路径
 cd /home/zjc/software/texlive
 #创建一个文件夹以存放解压的东西
 mkdir -p /home/zjc/software/texlive/texlive2026-unpacked
-#用7z来解压
+#linux用7z来解压，windows系统可以右键解压
 7z x /home/zjc/software/texlive/texlive2026-20260301.iso \  
 -o/home/zjc/software/texlive/texlive2026-unpacked
-#检查解压结果
+#检查解压结果(如果是windows系统，用dir替换ls)
 cd /home/zjc/software/texlive/texlive2026-unpacked
 ls
 ```
 
-ls后应该能看到install-tl文件，说明对了
+ls后应该能看到install-tl文件，这些是安装包的文件，说明对了
 
 ## 3. 安装texlive
 
@@ -38,6 +38,9 @@ ls后应该能看到install-tl文件，说明对了
 cd /home/zjc/software/texlive/texlive2026-unpacked
 #安装至指定路径
 perl install-tl --texdir=/home/zjc/software/texlive/2026
+
+#如果是windows系统，请留意根据自己的路径适配：
+install-tl-windows.bat --texdir="D:\Software\Texlive\2026"
 ```
 
 在弹出来的界面里确认安装位置是TEXDIR: /home/zjc/software/texlive/2026，然后输入`I`再回车，这里需要等待安装，一般15分钟左右。
@@ -50,7 +53,7 @@ find /home/zjc/software/texlive/2026/bin -name xelatex
 
 大概率会得到`/home/zjc/software/texlive/2026/bin/x86_64-linux/xelatex`，说明对了
 
-## 4. 编辑环境变量
+## 4. 编辑环境变量(linux版本)
 
 ```bash
 #不用打开bashrc再添加，直接一行行输入就行
