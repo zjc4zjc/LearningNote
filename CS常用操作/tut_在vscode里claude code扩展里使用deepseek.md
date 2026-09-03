@@ -7,7 +7,7 @@
 - `node` 和 `npm` 已经可用
 - 终端执行 `node -v` 和 `npm -v` 有正确输出
 
-如果还没有安装 `node` 和 `npm`，请查看教程[tut_node_npm下载安装](tut_node_npm下载安装)
+如果还没有安装 `node` 和 `npm`，请查看教程[tut_node_npm下载安装](tut_node_npm下载安装.md)
 
 
 ## 1. 下载claude code
