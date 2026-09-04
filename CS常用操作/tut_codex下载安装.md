@@ -226,9 +226,9 @@ cat ~/.vscode-server/server-env-setup
 
 ```bash
 model_provider = "xxx(第三方提供商)"
-model = "gpt-5.5"
+model = "gpt-5.6"
 model_reasoning_effort = "high"
-plan_mode_reasoning_effort = "xhigh"
+plan_mode_reasoning_effort = "high"
 personality = "pragmatic"
 service_tier = "fast"
 

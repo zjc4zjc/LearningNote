@@ -12,34 +12,15 @@
 
 ## 1. 下载claude code
 
-终端里执行`npm install -g @anthropic-ai/claude-code`
+终端里先确保where npm有输出，再在终端里执行`npm install -g @anthropic-ai/claude-code`
 
 在VSCode中下载插件Claude Code for VS Code
 
 在插件页面直接搜索Claude Code for VS Code，下载启用即可
 
-## 2. 修改Claude Code的配置
+## 2. 修改Claude Code Extension的Settings JSON
 
-假设主要是在远端服务器用，不是在本机用。
-
-在vscode的左下角，有一个齿轮。点击齿轮(或者直接 `ctrl + ,` )，点击settings，在弹出来的窗口选中**USER**，点击Extensions-Claude Code-Edit in settings.json，在弹出来的 `claudeCode.environmentVariables`里新增两行代码：
-
-```bash
-	"claudeCode.environmentVariables": [
-	{ "name": "ANTHROPIC_BASE_URL", "value": "https://xxxx" },
-    { "name": "ANTHROPIC_AUTH_TOKEN", "value": "xxxx" }
-    ]
-```
-
-这里的URL和TOKEN就按照上面的xxx格式就行了，不用修改，复制了直接保存并退出。
-
-## 3. 修改Settings JSON
-
-如果是本机用，则修改本机的settings.json；如果是连了linux服务器，则修改服务器上的settings.json。
-
-以远程ssh服务器为例，按`Ctrl+Shift+P`，输入并打开`Preferences: Open Remote Settings (JSON)`，在括号内新增代码：
-
-或者其实也可以用和第二步一样的方法：在vscode的左下角，有一个齿轮。点击齿轮(或者直接 `ctrl + ,` )，点击settings，在弹出来的窗口选中**REMOTE**，点击Extensions-Claude Code-Edit in settings.json，在弹出来的 `claudeCode.environmentVariables`里新增代码：
+在vscode的左下角，有一个齿轮。点击齿轮(或者直接 `ctrl + ,` )，点击settings，在弹出来的窗口（如果你是在本机用，则选中**USER**，如果你是在远程服务器用，则选中**REMOTE**），点击Extensions-Claude Code-Edit in settings.json，在弹出来的 `claudeCode.environmentVariables`里新增代码：
 
 ```bash
 {
