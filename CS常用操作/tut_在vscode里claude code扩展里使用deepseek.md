@@ -28,12 +28,13 @@
   "claudeCode.environmentVariables": [
     {"name": "ANTHROPIC_AUTH_TOKEN","value": "sk-xxx"},
     {"name": "ANTHROPIC_BASE_URL","value": "https://api.deepseek.com/anthropic" },
-    {"name": "ANTHROPIC_MODEL","value": "deepseek-v4-pro[1m]"},
-    {"name": "ANTHROPIC_DEFAULT_OPUS_MODEL","value": "deepseek-v4-pro[1m]"},
-    {"name": "ANTHROPIC_DEFAULT_SONNET_MODEL","value": "deepseek-v4-pro[1m]"},
-    {"name": "ANTHROPIC_DEFAULT_HAIKU_MODEL","value": "deepseek-v4-flash"},
-    {"name": "CLAUDE_CODE_SUBAGENT_MODEL","value": "deepseek-v4-flash"},
+    {"name": "ANTHROPIC_MODEL","value": "deepseek-flash[1m]"},
+    {"name": "ANTHROPIC_DEFAULT_OPUS_MODEL","value": "deepseek-flash[1m]"},
+    {"name": "ANTHROPIC_DEFAULT_SONNET_MODEL","value": "deepseek-flash[1m]"},
+    {"name": "ANTHROPIC_DEFAULT_HAIKU_MODEL","value": "deepseek-flash"},
+    {"name": "CLAUDE_CODE_SUBAGENT_MODEL","value": "deepseek-flash"},
     {"name": "CLAUDE_CODE_EFFORT_LEVEL","value": "max"},
+    {"name": "CLAUDE_CODE_AUTO_COMPACT_WINDOW","value": "786432"},
     {"name": "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC","value": "1"}
   ]
 }
