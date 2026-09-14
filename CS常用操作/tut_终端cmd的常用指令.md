@@ -32,6 +32,9 @@
 | nano ~/.bashrc                  | 进入shell配置文件，配置环境变量         |
 | source ~/.bashrc                | 重启shell配置文件                |
 | which git/nvcc                  | 查看某依赖的位置，查不到要么没下载要么没配置环境变量 |
+|                                 |                            |  
+查看gpu的使用者：
+nvidia-smi --query-compute-apps=gpu_uuid,pid,used_memory,process_name --format=csv,noheader 2>/dev/null
 
 ---
 
