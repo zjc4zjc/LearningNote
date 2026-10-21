@@ -101,7 +101,7 @@ A3：苹果是水果。
 # 5. GRPO 组内相对策略优化
 
 **PPO流程：**
-![[Pasted image 20260410174450.png]]
+![[pics/ch02/img-001.png]]
 输入问题q，经过策略模型(Policy Model)，生成回答o。接着输出o被输入到3个模型：
 - 参考模型(Reference，冻结)：计算输出o与训练数据之间的KL散度，用于限制策略更新
 - 奖励模型(Reward，冻结)：生成奖励r，是实际分数
@@ -110,7 +110,7 @@ GAE优势 A=实际分数-预期分数。优势为在输出时生成了某个 tok
 
 
 **GRPO(Group Relative Policy Optimization)流程：**
-![[Pasted image 20260410174532.png]]
+![[pics/ch02/img-002.png]]
 GRPO的核心就和它的名字一样，**创新点是使用组建关系去重塑优势的计算方法**：
 1. 输入q，经过策略模型(Policy Model)，针对同一个q生成多个回答`o_1,o_2,...,o_G`
 2. 接着输出o被输入到2个冻结的模型：
