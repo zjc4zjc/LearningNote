@@ -1,0 +1,48 @@
+# 远程remote按键
+
+本文记录远程remote按键
+## 终端的通用指令教程
+
+| 指令(一般都是系统层指令)                                                                                                                                                                                                    | 目的                                                                                                                                                                                         |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| nvidia-smi                                                                                                                                                                                                       | 右上角查看**支持的CUDA最高版本**                                                                                                                                                                       |
+| nvidia-smi --query-gpu=name,compute_cap --format=csv,noheader                                                                                                                                                    | 查看显卡与**当前GPU架构的sm版本**                                                                                                                                                                      |
+| nvcc --version                                                                                                                                                                                                   | 查看cuda版本，如果显示'nvcc' 不是内部或外部命令，也不是可运行的程序或批处理文件，说明**还没下载CUDA toolkit**，或者没配置**环境变量**<br>1）先激活虚拟环境再：pip install -c nvidia cuda-toolkit=12.8(版本请自选合适的)<br>2）后者请查阅[tut_环境变量的配置](tut_环境变量的配置.md) |
+| python -c "import torch; print('torch:', torch.__version__); print('cuda available:', torch.cuda.is_available()); print('cuda version:', torch.version.cuda); print('device count:', torch.cuda.device_count())" | 看torch支不支持gpu                                                                                                                                                                              |
+
+---
+
+## Linux终端的常用指令教程
+
+| 指令                              | 目的                         |     |
+| ------------------------------- | -------------------------- | --- |
+| lsb_release -a                  | 查看linux的操作系统               |     |
+| lscpu                           | 查看cpu信息                    |     |
+| nvidia-smi -L                   | 看显卡型号                      |     |
+| watch -n 1 nvidia-smi           | 动态看显卡                      |     |
+| df -h                           | 看硬盘已挂载可用空间                 |     |
+| du -sh /gemini/code/UESTCRecord | 看特定文件夹大小                   |     |
+| du -sh /home/zjc                | 看自己用了多少空间                  |     |
+| cd                              | 回到home文件夹                  |     |
+| cd ..                           | 回到上一级文件夹                   |     |
+| cd ~/software                   | 进入特定路径                     |     |
+| ls                              | 列出当前文件夹里所有文件               |     |
+| mkdir -p ~/software/node        | 在特定路径创建特定文件夹，如果已经有了则pass   |     |
+| pwd                             | 打印当前完整路径                   |     |
+| nano ~/.bashrc                  | 进入shell配置文件，配置环境变量         |     |
+| source ~/.bashrc                | 重启shell配置文件                |     |
+| which git/nvcc                  | 查看某依赖的位置，查不到要么没下载要么没配置环境变量 |     |
+|                                 |                            |     |
+查看gpu的使用者：
+```
+nvidia-smi --query-compute-apps=gpu_uuid,pid,used_memory --format=csv,noheader 2>/dev/null | while IFS=, read -r uuid pid mem; do user=$(ps -o user= -p $pid 2>/dev/null | head -1); cmd=$(ps -o comm= -p $pid 2>/dev/null | head -1); gpu=$(nvidia-smi --query-gpu=index,uuid --format=csv,noheader | grep "$uuid" | cut -d, -f1); echo "GPU$gpu pid=$pid user=$user cmd=$cmd mem=${mem}MB"; done
+```
+
+---
+
+## Windows终端的常用指令教程
+
+| 指令             | 目的                         |
+| -------------- | -------------------------- |
+| ipconfig/all   | 查看ip                       |
+| where git/nvcc | 查看某依赖的位置，查不到要么没下载要么没配置环境变量 |
